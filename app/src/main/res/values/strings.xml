@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Sliide task</string>
+    <string name="delete_success">User deleted successfully</string>
+    <string name="delete_error">An error has occurred while trying to delete users</string>
+    <string name="error_loading_users">Error loading users, please try again</string>
+    <string name="add">Add</string>
+    <string name="name">Name</string>
+    <string name="save">Save user</string>
+    <string name="email">email</string>
+    <string name="create_success">User created successfully</string>
+    <string name="create_error">Error while creating user. Try again.</string>
+    <string name="confirm_delete">Are you sure you want to delete the user?</string>
+</resources>
