@@ -4,15 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.github.talosdev.task.domain.BusinessException
+import com.github.talosdev.task.domain.ValidationException
 import com.github.talosdev.task.domain.User
 import com.github.talosdev.task.domain.UserRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.internal.disposables.CancellableDisposable
 import io.reactivex.rxjava3.subjects.PublishSubject
-import java.lang.Exception
 
 
 class UsersViewModel(private val userRepository: UserRepository) : ViewModel() {
@@ -73,12 +71,8 @@ class UsersViewModel(private val userRepository: UserRepository) : ViewModel() {
             userRepository.createUser(name, email)
                 .subscribe({
                     _createUserStream.onNext(CreateUserState.Success)
-                }, { ex ->
-                    _createUserStream.onNext(
-                        CreateUserState.Error(
-                            ex.takeIf { it is BusinessException }?.message
-                        )
-                    )
+                }, {
+                    _createUserStream.onNext(CreateUserState.Error(it is ValidationException))
                 })
         )
     }
@@ -117,5 +111,5 @@ data class DeleteActionState(
 
 sealed class CreateUserState {
     object Success : CreateUserState()
-    data class Error(val message: String?) : CreateUserState()
+    data class Error(val isValidationError: Boolean = false) : CreateUserState()
 }

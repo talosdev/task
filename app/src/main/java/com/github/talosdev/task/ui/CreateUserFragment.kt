@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.github.talosdev.task.R
 import com.github.talosdev.task.databinding.BottomSheetBinding
+import com.github.talosdev.task.domain.ValidationException
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -72,8 +73,10 @@ class CreateUserFragment : BottomSheetDialogFragment() {
                                 dismiss()
                             }
                             is CreateUserState.Error -> {
-                                createUserState.message?.let { showToast(it) } ?: run {
-                                    showToast(R.string.create_error)
+                                if (createUserState.isValidationError) {
+                                    showToast(R.string.create_error_validation)
+                                } else {
+                                    showToast(R.string.create_error_generic)
                                 }
                             }
                         }
@@ -91,12 +94,6 @@ class CreateUserFragment : BottomSheetDialogFragment() {
     private fun showToast(@StringRes messageRes: Int) {
         context?.let {
             Toast.makeText(it, messageRes, Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun showToast(message: String) {
-        context?.let {
-            Toast.makeText(it, message, Toast.LENGTH_SHORT).show()
         }
     }
 

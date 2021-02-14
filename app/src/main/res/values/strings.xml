@@ -8,6 +8,7 @@
     <string name="save">Save user</string>
     <string name="email">email</string>
     <string name="create_success">User created successfully</string>
-    <string name="create_error">Error while creating user. Try again.</string>
+    <string name="create_error_generic">Error while creating user. Try again.</string>
     <string name="confirm_delete">Are you sure you want to delete the user?</string>
+    <string name="create_error_validation">Could not create user. Please check the input data.</string>
 </resources>

@@ -22,11 +22,7 @@ class UserRepository(
                 if (response.code == GeneralResponse.DELETE_SUCCESS_CODE) {
                     Completable.complete()
                 } else {
-                    Completable.error(BusinessException(
-                        response.data?.firstOrNull()?.let {
-                            "${it.field} ${it.message}"
-                        }
-                    ))
+                    Completable.error(ValidationException())
                 }
             }
     }
@@ -42,14 +38,10 @@ class UserRepository(
                 if (response.code == GeneralResponse.CREATE_SUCCESS_CODE) {
                     Completable.complete()
                 } else {
-                    Completable.error(BusinessException(
-                        response.data?.firstOrNull()?.let {
-                            "${it.field} ${it.message}"
-                        }
-                    ))
+                    Completable.error(ValidationException())
                 }
             }
     }
 }
 
-class BusinessException(message: String?) : Exception(message)
+class ValidationException() : Exception()
