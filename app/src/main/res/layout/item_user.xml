@@ -15,7 +15,7 @@
         android:layout_marginEnd="8dp"
         android:textStyle="bold"
         android:ellipsize="end"
-        app:layout_constraintEnd_toStartOf="@+id/delete"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Mickey Mouse" />
@@ -26,26 +26,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="4dp"
-        android:textSize="10dp"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/name"
         app:layout_constraintStart_toStartOf="@+id/name"
         app:layout_constraintTop_toBottomOf="@+id/name"
         tools:text="john.doe@email.com" />
-
-
-    <ImageView
-        android:id="@+id/delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_delete"
-        android:foreground="?selectableItemBackgroundBorderless"
-        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

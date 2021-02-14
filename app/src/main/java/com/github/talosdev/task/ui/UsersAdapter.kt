@@ -35,8 +35,9 @@ class UserViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHo
     fun bind(user: User, userActions: UserActions) {
         binding.name.text = user.name
         binding.email.text = user.email
-        binding.delete.setOnClickListener {
+        binding.root.setOnLongClickListener {
             userActions.onUserAction(UserAction.Delete(user))
+            true
         }
     }
 }
